@@ -5,7 +5,7 @@
 #include <PMButton.h>
 #include <Service.h>
 
-#define DEBOUNCE 5
+#define DEBOUNCE 10
 
 class NIButton : public Service {
 private:
@@ -28,23 +28,25 @@ public:
 
     bool begin() override;
 
-    NIButton *on_short_press(void (*_on_pressed)());
+    NIButton &on_short_press(void (*_on_pressed)());
 
-    NIButton *long_press(long delay);
+    NIButton &long_press(long delay);
 
-    NIButton *llong_press(long delay);
+    NIButton &llong_press(long delay);
 
-    NIButton *on_llong_press(void (*_on_pressed)());
+    NIButton &on_llong_press(void (*_on_pressed)());
 
-    NIButton *on_long_press(void (*_on_pressed)());
+    NIButton &on_long_press(void (*_on_pressed)());
 
-    NIButton *on_press(void (*_on_press)());
+    NIButton &on_press(void (*_on_press)());
 
-    NIButton *on_release(void (*_on_release)());
+    NIButton &on_release(void (*_on_release)());
 
     bool pressed();
 
     bool held();
+
+    bool held_long();
 
     void cycle() override;
 };
