@@ -1,6 +1,6 @@
-#include "MotorBridge.h"
+#include "MotorBridgeBTS7960.h"
 
-bool MotorBridge::begin() {
+bool MotorBridgeBTS7960::begin() {
     if (!Motor::begin())
         return false;
 
@@ -13,7 +13,7 @@ bool MotorBridge::begin() {
     return true;
 }
 
-void MotorBridge::_off() {
+void MotorBridgeBTS7960::_off() {
     digitalWrite(r_enable, LOW);
     digitalWrite(l_enable, LOW);
     this->speed = 0;
@@ -21,22 +21,22 @@ void MotorBridge::_off() {
     analogWrite(l_pwm, 0);
 }
 
-void MotorBridge::enable() {
+void MotorBridgeBTS7960::enable() {
     digitalWrite(r_enable, HIGH);
     digitalWrite(l_enable, HIGH);
 }
 
-void MotorBridge::_dir_cw() {
+void MotorBridgeBTS7960::_dir_cw() {
     setSpeed(CW, MIN_SPEED);
     this->enable();
 }
 
-void MotorBridge::_dir_ccw() {
+void MotorBridgeBTS7960::_dir_ccw() {
     setSpeed(CCW, MIN_SPEED);
     this->enable();
 }
 
-void MotorBridge::setSpeed(MotorState state, uint8_t speed) {
+void MotorBridgeBTS7960::setSpeed(MotorState state, uint8_t speed) {
     if (state == OFF) {
         return;
     }
@@ -52,7 +52,7 @@ void MotorBridge::setSpeed(MotorState state, uint8_t speed) {
     }
 }
 
-void MotorBridge::cycle() {
+void MotorBridgeBTS7960::cycle() {
     if (elapsed >= SPEED_STEP_DURATION && speed < MAX_SPEED && speed >= MIN_SPEED) {
         setSpeed(get_state(), speed + 5 % (MAX_SPEED + 1));
         elapsed = 0;

@@ -15,6 +15,9 @@
 #define BUTTON_P2       A4 // -> 18
 #define BUTTON_RST      A5 // -> 19
 
+#define MOTOR_CURENT_R  A6 // -> 20
+#define MOTOR_CURENT_L  A7 // -> 21
+
 /**
  * __WATCHDOG__         if watchdog is enabled
  * WATCHDOG_TIMEOUT     represents timeout in millis for watchdog to perform its checks
@@ -39,8 +42,17 @@
     #define WATCHDOG_TOLERANCE      3
 #endif
 
+
 #define STOP_POS_DIFF       1   // Offset distance for preset end stop
 #define MINIMUM_POS_CHANGE  8   // Minimum distance for presets to be invoked
+
+#ifdef __VNH2SP30__ 
+    #define     MOTOR_CONTROL_INA   7
+    #define     MOTOR_CONTROL_INB   8
+    #define     MOTOR_PWM           9 
+    #define     MOTOR_STATUS        10
+    #define     MOTOR_CURRENT       A6
+#endif
 
 #define R_EN    7
 #define L_EN    8
