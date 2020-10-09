@@ -10,7 +10,7 @@
 
 class MotorBridgeVNH2SP30 : public MotorBridge {
 private:
-    uint8_t pwm= 0, ina = 0, inb = 0, status = 0, speed = 0;
+    uint8_t pwm= 0, ina = 0, inb = 0, status = 0, curr = 0, speed = 0;
 protected:
     void _off() override;
 
@@ -23,10 +23,10 @@ protected:
     void enable() override;
 
 public:
-    MotorBridgeVNH2SP30(uint8_t _pin1, uint8_t _pin2, uint8_t _ina, uint8_t _inb, uint8_t _pwm, uint8_t _status,
+    MotorBridgeVNH2SP30(uint8_t _pin1, uint8_t _pin2, uint8_t _ina, uint8_t _inb, uint8_t _pwm, uint8_t _status, uint8_t _curr,
                 uint8_t stop_diff, uint8_t min_change)
             : MotorBridge(_pin1, _pin2, stop_diff, min_change),
-              pwm(_pwm), ina(_ina), inb(_inb), status(_status) {};
+              pwm(_pwm), ina(_ina), inb(_inb), status(_status), curr(_curr) {};
 
     bool begin() override;
 

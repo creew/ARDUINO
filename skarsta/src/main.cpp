@@ -37,7 +37,7 @@ void eeprom_reset() {
 
 #ifdef __H_BRIDGE_MOTOR__
 #ifdef __VNH2SP30__
-MotorBridgeVNH2SP30 motor(SENSOR_PIN0, SENSOR_PIN1, MOTOR_CONTROL_INA, MOTOR_CONTROL_INB, MOTOR_PWM, MOTOR_STATUS, STOP_POS_DIFF, MINIMUM_POS_CHANGE);
+MotorBridgeVNH2SP30 motor(SENSOR_PIN0, SENSOR_PIN1, MOTOR_CONTROL_INA, MOTOR_CONTROL_INB, MOTOR_PWM, MOTOR_STATUS, MOTOR_CURRENT, STOP_POS_DIFF, MINIMUM_POS_CHANGE);
 #else
 MotorBridgeBTS7960 motor(SENSOR_PIN0, SENSOR_PIN1, R_EN, L_EN, R_PWM, L_PWM, STOP_POS_DIFF, MINIMUM_POS_CHANGE);
 #endif
@@ -48,7 +48,7 @@ Display display(DISPLAY_PIN_CLK, DISPLAY_PIN_DIO, FADE_TIMEOUT);
 Watchdog watchdog(&motor, WATCHDOG_TIMEOUT, WATCHDOG_DEADLOCK_CHANGE, WATCHDOG_OTHER_CHANGE);
 Calibrator calibrator(&motor);
 Keypad keypad(&motor, &display, &calibrator, BUTTON_DOWN, BUTTON_UP, BUTTON_RST, BUTTON_P0, BUTTON_P1, BUTTON_P2);
-std::vector<Service *> services = {&calibrator, &watchdog, &keypad, &motor, &display};
+Service * services[] = {&calibrator, &watchdog, &keypad, &motor, &display};
 
 #ifdef __WATCHDOG__
 SafetyTrigger stallTrigger(&motor, &display, STOPPED, WATCHDOG_TOLERANCE);

@@ -9,6 +9,8 @@ bool MotorBridgeVNH2SP30::begin() {
     initPin(pwm);
     if (status > 0) 
         pinMode(status, INPUT_PULLUP);
+    if (curr > 0)
+        pinMode(curr, INPUT);
     this->enable();
 
     return true;
@@ -57,6 +59,9 @@ void MotorBridgeVNH2SP30::cycle() {
         setSpeed(get_state(), speed + 5 % (MAX_SPEED + 1));
         elapsed = 0;
     }
-
+    if (curr > 0) {
+        int val = analogRead(curr);
+        LOG("m | current:%d", val);
+    }
     Motor::cycle();
 }

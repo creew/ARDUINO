@@ -23,10 +23,10 @@ protected:
     void enable() override;
 
 public:
-    MotorBridgeBTS7960(uint8_t _pin1, uint8_t _pin2, uint8_t _pin3, uint8_t _pin4, uint8_t _pin5, uint8_t _pin6,
+    MotorBridgeBTS7960(uint8_t _sensor1, uint8_t _sensor2, uint8_t _r_enable, uint8_t _l_enable, uint8_t _r_pwm, uint8_t _l_pwm,
                 uint8_t stop_diff, uint8_t min_change)
-            : MotorBridge(_pin1, _pin2, stop_diff, min_change),
-              r_pwm(_pin5), l_pwm(_pin6), r_enable(_pin3), l_enable(_pin4) {};
+            : MotorBridge(_sensor1, _sensor2, stop_diff, min_change),
+              r_pwm(_r_pwm), l_pwm(_l_pwm), r_enable(_r_enable), l_enable(_l_enable) {};
 
     bool begin() override;
 

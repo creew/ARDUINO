@@ -51,6 +51,7 @@
     #define     MOTOR_CONTROL_INB   8
     #define     MOTOR_PWM           9 
     #define     MOTOR_STATUS        10
+    #define     MOTOR_CURRENT       A6
 #endif
 
 #define R_EN    7
